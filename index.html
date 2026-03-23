@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ruth Lue, RN MN — Academic E-Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --teal:       #3a7d74;
+    --teal-dark:  #2a5c55;
+    --teal-light: #6ab4aa;
+    --salmon:     #e07b6a;
+    --salmon-dark:#c45e4e;
+    --salmon-light:#f0a898;
+    --cream:      #fdf5f3;
+    --ivory:      #fef9f8;
+    --sand:       #ecddd9;
+    --charcoal:   #2c2c2c;
+    --muted:      #6b6b6b;
+    --accent:     #e07b6a;
+    --white:      #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px;
+    height: 64px;
+    background: rgba(253,251,247,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sand);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--salmon-dark);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--salmon); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 72px 80px 80px;
+    background: var(--ivory);
+  }
+  .hero-tag {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--salmon); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--salmon);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--charcoal); margin-bottom: 12px;
+  }
+  .hero-name em { font-style: italic; color: var(--salmon-dark); }
+  .hero-title {
+    font-size: 0.9rem; font-weight: 400; color: var(--muted);
+    margin-bottom: 32px; letter-spacing: 0.02em;
+  }
+  .hero-bio {
+    font-size: 1rem; color: var(--charcoal); max-width: 480px;
+    line-height: 1.8; margin-bottom: 48px;
+    border-left: 3px solid var(--salmon-light); padding-left: 20px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--salmon-dark); color: var(--white);
+    padding: 13px 28px; border-radius: 2px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--salmon); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--salmon-dark); color: var(--salmon-dark);
+    padding: 13px 28px; border-radius: 2px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--salmon-dark); color: var(--white); }
+
+  .hero-image {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-image img {
+    width: 72%; max-width: 380px;
+    height: auto; object-fit: cover;
+    object-position: center top;
+    border-radius: 2px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+  .hero-image-overlay { display: none; }
+  .hero-credentials {
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+  .credential-tag {
+    background: rgba(253,251,247,0.92); backdrop-filter: blur(4px);
+    padding: 7px 14px; border-radius: 2px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--salmon-dark); text-transform: uppercase;
+  }
+
+  /* ── SECTION SHELL ── */
+  section { padding: 96px 80px; }
+  section:nth-child(even) { background: var(--cream); }
+
+  .section-label {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--salmon); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content:''; display:block; width:24px; height:1px; background:var(--salmon); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; color: var(--charcoal); margin-bottom: 48px;
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--salmon-dark); }
+
+  /* ── RESEARCH FOCUS ── */
+  .focus-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--sand); }
+  .focus-card {
+    background: var(--ivory); padding: 40px 36px;
+    transition: background 0.2s;
+  }
+  .focus-card:hover { background: var(--white); }
+  .focus-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--salmon); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  .focus-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .focus-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── CREDENTIALS / TIMELINE ── */
+  .credentials-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .credential-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--salmon-dark);
+    margin-bottom: 28px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--sand);
+  }
+  .timeline { display: flex; flex-direction: column; gap: 24px; }
+  .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 20px; }
+  .timeline-year {
+    font-size: 0.75rem; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.06em; padding-top: 4px;
+  }
+  .timeline-content h4 { font-size: 0.95rem; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
+  .timeline-content p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--sand); }
+  .skill-item {
+    background: var(--cream); padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .skill-item span {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; color: var(--charcoal);
+  }
+  .skill-bar { height: 3px; background: var(--sand); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--salmon); border-radius: 2px; transition: width 1s ease; }
+
+  /* ── PUBLICATIONS ── */
+  .pubs-list { display: flex; flex-direction: column; gap: 1px; background: var(--sand); }
+  .pub-item {
+    background: var(--ivory); padding: 32px 40px;
+    display: grid; grid-template-columns: 60px 1fr auto;
+    align-items: start; gap: 24px;
+    transition: background 0.2s;
+  }
+  .pub-item:hover { background: var(--white); }
+  .pub-year {
+    font-size: 0.8rem; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.04em; padding-top: 4px;
+  }
+  .pub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+  .pub-meta { font-size: 0.82rem; color: var(--muted); }
+  .pub-tag {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid var(--sand); color: var(--muted);
+    border-radius: 2px; white-space: nowrap;
+  }
+
+  /* ── CAND3 ── */
+  .cand3-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .cand3-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .cand3-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--sand); margin-top: 8px; }
+  .cand3-stat {
+    background: var(--white); padding: 28px 24px;
+  }
+  .cand3-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--salmon-dark); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .cand3-stat .label { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+
+  /* ── PORTFOLIO ── */
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--sand); }
+  .portfolio-card {
+    background: var(--ivory); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: background 0.2s;
+  }
+  .portfolio-card:hover { background: var(--white); }
+  .portfolio-card-img {
+    height: 180px; background: var(--teal-dark);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .portfolio-card-img-inner {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
+  }
+  .portfolio-card-body { padding: 28px 28px 32px; }
+  .portfolio-card-type {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--salmon); margin-bottom: 10px;
+  }
+  .portfolio-card-body h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    font-weight: 600; color: var(--charcoal); margin-bottom: 10px;
+  }
+  .portfolio-card-body p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact-info { display: flex; flex-direction: column; gap: 32px; }
+  .contact-block h4 {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--salmon); margin-bottom: 8px;
+  }
+  .contact-block p, .contact-block a {
+    font-size: 0.95rem; color: var(--charcoal);
+    text-decoration: none; line-height: 1.6;
+  }
+  .contact-block a:hover { color: var(--salmon); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--sand);
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--salmon); }
+  .contact-form textarea { resize: vertical; min-height: 140px; }
+  .contact-form button {
+    align-self: flex-start;
+    background: var(--salmon-dark); color: var(--white);
+    border: none; cursor: pointer;
+    padding: 13px 32px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-form button:hover { background: var(--salmon); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #2e2220; color: rgba(255,255,255,0.7);
+    padding: 40px 80px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--white);
+  }
+  footer p { font-size: 0.8rem; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  footer .footer-links a:hover { color: var(--white); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 0 28px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 64px 32px; }
+    .hero-image { min-height: 360px; }
+    section { padding: 64px 32px; }
+    .focus-grid,
+    .credentials-layout,
+    .skills-grid,
+    .cand3-layout,
+    .portfolio-grid,
+    .contact-layout { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Ruth Lue, RN MN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0;">
+  <div class="hero-text">
+    <div class="hero-tag">Academic E-Portfolio</div>
+    <h1 class="hero-name">Ruth <em>Lue</em></h1>
+    <p class="hero-title">RN MN · PhD Candidate in Sociology · Assistant Teaching Professor</p>
+    <p class="hero-bio">
+      Faculty of Nursing, University of New Brunswick — advancing health equity, 
+      social determinants of health, and globally informed nursing education.
+    </p>
+    <div class="hero-ctas">
+      <a href="#about" class="btn-primary">View Portfolio</a>
+      <a href="https://docs.wixstatic.com/ugd/84770f_a594f88e0dd34b7ca253388dd6f4c9bb.pdf" target="_blank" class="btn-outline">Download CV</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://static.wixstatic.com/media/ea9f4d_8706742a7d0440bdb862ddbf639395d6~mv2.jpg/v1/crop/x_0,y_133,w_1068,h_1291/fill/w_900,h_1200,al_c,q_80/IMG_3816.jpg" alt="Ruth Lue" />
+    <div class="hero-image-overlay"></div>
+    <div class="hero-credentials">
+      <span class="credential-tag">UNB Faculty of Nursing</span>
+      <span class="credential-tag">CAnD3 Fellow</span>
+      <span class="credential-tag">Global Health Lead</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / PHILOSOPHY -->
+<section id="about" style="background:#2a3f3d; color:var(--white);">
+  <div class="section-label" style="color:var(--salmon-light);">
+    <span style="background:var(--salmon-light); display:block; width:24px; height:1px;"></span>
+    About
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+    <div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; line-height:1.2; margin-bottom:32px; color:var(--white);">
+        Bridging <em style="font-style:italic; color:var(--salmon-light);">nursing</em>, sociology & population health
+      </h2>
+      <p style="font-size:0.95rem; color:rgba(255,255,255,0.8); line-height:1.9; margin-bottom:20px;">
+        Welcome to my e-portfolio. I am a PhD student in Sociology and an Assistant Teaching Professor 
+        in Nursing at the University of New Brunswick, with a strong commitment to health equity 
+        and nursing education.
+      </p>
+      <p style="font-size:0.95rem; color:rgba(255,255,255,0.8); line-height:1.9; margin-bottom:36px;">
+        This space reflects my journey, values, and ongoing work in teaching, research, and global 
+        health leadership — integrating equity-oriented, culturally safe, and globally informed 
+        approaches to health and education.
+      </p>
+      <a href="#contact" class="btn-outline" style="border-color:rgba(255,255,255,0.5); color:var(--white);">Get in Touch</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <div style="background:rgba(255,255,255,0.07); padding:28px 32px;">
+        <div style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--salmon-light); margin-bottom:8px;">Teaching Philosophy</div>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.7;">Equity-oriented, culturally safe, and evidence-informed nursing education that prepares future nurses to serve diverse communities.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.07); padding:28px 32px;">
+        <div style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--salmon-light); margin-bottom:8px;">Research Approach</div>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.7;">Population-level, data-driven inquiry at the intersection of sociology, nursing, and public health — foregrounding lived experiences and systemic inequities.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.07); padding:28px 32px;">
+        <div style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--salmon-light); margin-bottom:8px;">Global Commitment</div>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.75); line-height:1.7;">As Global Health Lead, integrating international perspectives and Indigenous health frameworks into curriculum and scholarly work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH FOCUS -->
+<section id="research">
+  <div class="section-label">Research Focus</div>
+  <h2 class="section-title">Areas of <em>Scholarly</em> Interest</h2>
+  <div class="focus-grid fade-up">
+    <div class="focus-card">
+      <div class="focus-icon">⚖️</div>
+      <h3>Health Equity</h3>
+      <p>Examining structural and systemic barriers to health, with emphasis on marginalized populations and the conditions that produce health disparities across communities.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🌍</div>
+      <h3>Social Determinants of Health</h3>
+      <p>Investigating how social, economic, and environmental factors — housing, income, race, gender — shape health outcomes at the individual and population level.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">📊</div>
+      <h3>Population Data Science</h3>
+      <p>Applying quantitative and mixed methods approaches through the CAnD3 Fellowship to produce policy-relevant evidence on population health and well-being.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🌿</div>
+      <h3>Indigenous Health</h3>
+      <p>Engaging with Indigenous health frameworks, decolonial methodologies, and culturally safe approaches in both research and nursing education curriculum.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🏥</div>
+      <h3>Nursing Education</h3>
+      <p>Developing equity-oriented, globally informed curricula that prepare nursing students to practice in diverse clinical and community settings.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🌐</div>
+      <h3>Global Health</h3>
+      <p>Leading global health initiatives and integrating international health perspectives and cross-cultural competencies into undergraduate nursing education.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" style="background:var(--cream);">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Education & <em>Experience</em></h2>
+  <div class="credentials-layout fade-up">
+    <div class="credential-section">
+      <h3>Education</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">Current</div>
+          <div class="timeline-content">
+            <h4>PhD in Sociology</h4>
+            <p>University of New Brunswick<br>Focus: Health equity & social determinants of health</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Current</div>
+          <div class="timeline-content">
+            <h4>CAnD3 Fellowship</h4>
+            <p>Consortium on Analytics for Data-Driven Decision-Making<br>Advanced training in population data science & quantitative methods</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Prior</div>
+          <div class="timeline-content">
+            <h4>Master of Nursing (MN)</h4>
+            <p>Graduate-level nursing scholarship with clinical specialization</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Prior</div>
+          <div class="timeline-content">
+            <h4>Bachelor of Nursing (BN)</h4>
+            <p>Foundational nursing education; Registered Nurse (RN) designation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="credential-section">
+      <h3>Professional Roles</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">Current</div>
+          <div class="timeline-content">
+            <h4>Assistant Teaching Professor</h4>
+            <p>Faculty of Nursing, University of New Brunswick<br>Nursing education, curriculum development, equity-oriented teaching</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Current</div>
+          <div class="timeline-content">
+            <h4>Global Health Lead</h4>
+            <p>Faculty of Nursing, UNB<br>International health partnerships and global curriculum integration</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Prior</div>
+          <div class="timeline-content">
+            <h4>Registered Nurse — Critical Care</h4>
+            <p>Clinical nursing practice in critical care settings, informing evidence-based teaching and socially informed approaches to patient care</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:40px;">
+        <a href="https://docs.wixstatic.com/ugd/84770f_a594f88e0dd34b7ca253388dd6f4c9bb.pdf" target="_blank" class="btn-primary">Download Full CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section style="padding-top:0; padding-bottom:0; background:var(--cream);">
+  <div class="skills-grid">
+    <div class="skill-item">
+      <span>Health Equity Research</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Quantitative Methods</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Curriculum Development</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Population Data Science</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Global Health Leadership</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Indigenous Health Frameworks</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Critical Care Nursing</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+    </div>
+    <div class="skill-item">
+      <span>Academic Writing & Publishing</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">Scholarship</div>
+  <h2 class="section-title">Publications & <em>Research</em></h2>
+  <div class="pubs-list fade-up">
+    <div class="pub-item">
+      <div class="pub-year">2024</div>
+      <div>
+        <div class="pub-title">An Indigenous Story: The Sami People</div>
+        <div class="pub-meta">Ruth Lue · Faculty of Nursing, UNB · Global Health Series</div>
+      </div>
+      <span class="pub-tag">Publication</span>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2024</div>
+      <div>
+        <div class="pub-title">Health Equity in Nursing Education: Equity-Oriented Curriculum Frameworks</div>
+        <div class="pub-meta">Ruth Lue · CAnD3 Fellowship Research · Population Health</div>
+      </div>
+      <span class="pub-tag">Research</span>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2023</div>
+      <div>
+        <div class="pub-title">Social Determinants of Health: A Population-Level Analysis</div>
+        <div class="pub-meta">Ruth Lue · PhD Research in Sociology · University of New Brunswick</div>
+      </div>
+      <span class="pub-tag">Conference</span>
+    </div>
+    <div class="pub-item">
+      <div class="pub-year">2023</div>
+      <div>
+        <div class="pub-title">Culturally Safe Nursing Practice in Diverse Communities</div>
+        <div class="pub-meta">Ruth Lue · Faculty of Nursing · UNB Academic Review</div>
+      </div>
+      <span class="pub-tag">Article</span>
+    </div>
+  </div>
+  <div style="margin-top:36px;">
+    <a href="https://ruthielue.wixsite.com/eportfolio/category/all-products" target="_blank" class="btn-outline">View All Publications</a>
+  </div>
+</section>
+
+<!-- CAnD3 FELLOWSHIP -->
+<section style="background:var(--cream);">
+  <div class="cand3-layout">
+    <div class="cand3-text">
+      <div class="section-label">Fellowship</div>
+      <h2 class="section-title">CAnD3 <em>Fellowship</em></h2>
+      <p>The Consortium on Analytics for Data-Driven Decision-Making (CAnD3) provides advanced training in population data science, quantitative research methods, and policy-relevant scholarship.</p>
+      <p>As a CAnD3 Fellow, I receive specialized training that bridges my background in nursing and sociology with cutting-edge data analytics — enabling me to produce rigorous, evidence-based insights on health equity and population outcomes.</p>
+      <div style="margin-top:32px;">
+        <a href="https://ruthielue.wixsite.com/eportfolio/cand3" target="_blank" class="btn-primary">Explore CAnD3 Work</a>
+      </div>
+    </div>
+    <div>
+      <div class="cand3-stat-grid">
+        <div class="cand3-stat">
+          <div class="num">PhD</div>
+          <div class="label">Sociology, in progress</div>
+        </div>
+        <div class="cand3-stat">
+          <div class="num">MN</div>
+          <div class="label">Master of Nursing</div>
+        </div>
+        <div class="cand3-stat">
+          <div class="num">RN</div>
+          <div class="label">Registered Nurse</div>
+        </div>
+        <div class="cand3-stat">
+          <div class="num">3+</div>
+          <div class="label">Research domains</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Selected <em>Work</em></h2>
+  <div class="portfolio-grid fade-up">
+    <div class="portfolio-card">
+      <div class="portfolio-card-img" style="background:var(--salmon-dark);">
+        <img class="portfolio-card-img-inner" src="https://static.wixstatic.com/media/c22c23_3b21abb2d4d44bedb8c5561823c9c51e~mv2_d_6019_4019_s_4_2.png/v1/fill/w_600,h_400,al_c/c22c23_3b21abb2d4d44bedb8c5561823c9c51e~mv2_d_6019_4019_s_4_2.png" alt="Sami People" />
+      </div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Global Health · Indigenous Studies</div>
+        <h3>An Indigenous Story: The Sami People</h3>
+        <p>A research piece examining the health and cultural context of the Sami — an Indigenous people of Northern Europe — through a global health lens.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-card-img" style="background:var(--teal-dark);">
+        <div style="text-align:center; color:rgba(255,255,255,0.6); font-family:'Cormorant Garamond',serif; font-size:2rem; font-style:italic;">Health<br>Equity</div>
+      </div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Curriculum · Nursing Education</div>
+        <h3>Equity-Oriented Nursing Curriculum</h3>
+        <p>Curriculum development work integrating social determinants of health, cultural safety, and structural competency into undergraduate nursing education.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-card-img" style="background:var(--salmon);">
+        <div style="text-align:center; color:rgba(255,255,255,0.7); font-family:'Cormorant Garamond',serif; font-size:2rem; font-style:italic;">CAnD3<br>Research</div>
+      </div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Data Science · Population Health</div>
+        <h3>Population-Level Health Analysis</h3>
+        <p>Quantitative research conducted through the CAnD3 Fellowship, examining population health outcomes through sociological and data science frameworks.</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:36px;">
+    <a href="https://ruthielue.wixsite.com/eportfolio/portfolio" target="_blank" class="btn-outline">View Full Portfolio</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--cream);">
+  <div class="section-label">Connect</div>
+  <h2 class="section-title">Get in <em>Touch</em></h2>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="contact-block">
+        <h4>Institution</h4>
+        <p>Faculty of Nursing<br>University of New Brunswick<br>Fredericton, NB, Canada</p>
+      </div>
+      <div class="contact-block">
+        <h4>Role</h4>
+        <p>Assistant Teaching Professor<br>Global Health Lead<br>CAnD3 Fellow · PhD Candidate</p>
+      </div>
+      <div class="contact-block">
+        <h4>Online</h4>
+        <a href="https://ruthielue.wixsite.com/eportfolio" target="_blank">ruthielue.wixsite.com/eportfolio</a>
+      </div>
+      <div>
+        <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">
+          I welcome inquiries related to research collaboration, speaking engagements, 
+          global health partnerships, and nursing education initiatives.
+        </p>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="return false;">
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="text" placeholder="Subject" />
+      <textarea placeholder="Your message..."></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Ruth Lue, RN MN</div>
+    <p style="margin-top:4px;">Faculty of Nursing, University of New Brunswick</p>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2026 Ruth Lue, RN MN</p>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Animate skill bars on visibility
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.style.width; // trigger
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.skills-grid').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>
