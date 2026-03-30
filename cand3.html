@@ -1,1 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CAnD3 Fellowship — Ruth Lue</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --teal:        #3a7d74;
+    --teal-dark:   #2a5c55;
+    --teal-light:  #6ab4aa;
+    --salmon:      #e07b6a;
+    --salmon-dark: #c45e4e;
+    --salmon-light:#f0a898;
+    --cream:       #fdf5f3;
+    --ivory:       #fef9f8;
+    --sand:        #ecddd9;
+    --charcoal:    #2c2c2c;
+    --muted:       #6b6b6b;
+    --white:       #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ivory); color: var(--charcoal); font-size: 16px; line-height: 1.7; }
 
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 64px;
+    background: rgba(254,249,248,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sand);
+  }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--salmon-dark); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--salmon); }
+
+  .hero {
+    min-height: 46vh; padding-top: 64px;
+    background: #2a3f3d;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-left: 80px; padding-right: 80px; padding-bottom: 56px;
+  }
+  .hero-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon-light); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; margin-top: 40px; }
+  .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--salmon-light); }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+  .hero-title img { height: 56px; width: auto; }
+  .hero-title em { font-style: italic; color: var(--salmon-light); }
+  .hero-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.7); max-width: 620px; line-height: 1.8; margin-bottom: 28px; }
+  .pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); padding: 6px 16px; border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--salmon-dark); color: var(--white); padding: 13px 28px; border-radius: 2px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: var(--salmon); transform: translateY(-1px); }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4,1fr); }
+  .stat-card { background: var(--ivory); padding: 24px 32px; border-right: 1px solid var(--sand); display: flex; align-items: center; gap: 16px; }
+  .stat-card:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--salmon-dark); line-height: 1; white-space: nowrap; }
+  .stat-label { font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
+
+  section { padding: 72px 80px; }
+  section:nth-child(even) { background: var(--cream); }
+  .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--salmon); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--charcoal); margin-bottom: 36px; line-height: 1.2; }
+  .section-title em { font-style: italic; color: var(--salmon-dark); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-grid p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 16px; }
+  .logo-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--sand); }
+  .logo-slot { width: 110px; height: 48px; background: var(--sand); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .info-panels { display: flex; flex-direction: column; gap: 2px; }
+  .info-panel { background: var(--white); padding: 20px 24px; border-left: 3px solid var(--salmon-light); }
+  .info-panel .label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--salmon); margin-bottom: 5px; }
+  .info-panel .value { font-size: 0.87rem; color: var(--charcoal); line-height: 1.6; }
+
+  /* SHARK TANK — text left, maps right */
+  .shark-layout { display: grid; grid-template-columns: 1.6fr 0.4fr; gap: 56px; align-items: start; }
+  .maps-stack { display: flex; flex-direction: column; gap: 2px; }
+  .maps-stack .map-card { overflow: hidden; }
+  .maps-stack .map-card img { width: 100%; height: auto; display: block; }
+  .shark-text p { font-size: 0.93rem; color: var(--muted); line-height: 1.9; margin-bottom: 16px; }
+  .shark-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--charcoal); margin-top: 28px; margin-bottom: 10px; }
+  .shark-text .method-note { font-size: 0.82rem; color: var(--muted); background: var(--cream); border-left: 3px solid var(--salmon-light); padding: 12px 16px; margin-bottom: 16px; line-height: 1.7; }
+
+  /* DATA TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; margin-bottom: 20px; }
+  .data-table th { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--salmon); padding: 8px 12px; border-bottom: 1px solid var(--sand); text-align: left; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--sand); color: var(--charcoal); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .positive { color: var(--teal-dark); font-weight: 500; }
+  .data-table .negative { color: var(--salmon-dark); font-weight: 500; }
+
+  /* MAPS */
+  .map-card { background: var(--ivory); overflow: hidden; border: 1px solid var(--sand); }
+  .map-card img { width: 100%; height: auto; display: block; }
+  .map-caption { padding: 10px 16px; font-size: 0.74rem; color: var(--muted); background: var(--cream); }
+
+  /* REPOS */
+  .repos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--sand); }
+  .repo-card { background: var(--ivory); padding: 36px 40px; transition: background 0.2s; }
+  .repo-card:hover { background: var(--white); }
+  .repo-type { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--salmon); margin-bottom: 10px; }
+  .repo-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--charcoal); margin-bottom: 10px; }
+  .repo-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .repo-link { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--salmon-dark); text-decoration: none; border-bottom: 1px solid var(--salmon-light); padding-bottom: 2px; transition: color 0.2s; }
+  .repo-link:hover { color: var(--salmon); }
+
+  /* POLICY BRIEF */
+  .policy-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; align-items: start; }
+  .policy-layout p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 16px; }
+  .policy-meta { display: flex; flex-direction: column; gap: 2px; }
+  .policy-meta-item { background: var(--white); padding: 18px 22px; border-left: 3px solid var(--salmon-light); }
+  .policy-meta-item .label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--salmon); margin-bottom: 4px; }
+  .policy-meta-item .value { font-size: 0.85rem; color: var(--charcoal); line-height: 1.5; }
+
+  footer { background: #2e2220; color: rgba(255,255,255,0.7); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); }
+  footer p { font-size: 0.8rem; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  @media (max-width: 720px) {
+    nav { padding: 0 28px; }
+    .nav-links { display: none; }
+    .hero { padding: 80px 32px 48px; }
+    section { padding: 56px 32px; }
+    .about-grid, .shark-layout, .repos-grid, .policy-layout { grid-template-columns: 1fr; }
+    .maps-stack { position: static; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .stat-card { border-bottom: 1px solid var(--sand); }
+    footer { flex-direction: column; gap: 20px; padding: 32px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Ruth Lue, RN MN</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#publications">Scholarship</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Fellowship</div>
+  <h1 class="hero-title"><img src="https://github.com/inlueof/inlueof.github.io/blob/main/CAnD3_logo_FINAL_Alone.png?raw=true" alt="CAnD3 Logo" />CAnD3 <em>Fellowship</em></h1>
+  <p class="hero-subtitle">Consortium on Analytics for Data-Driven Decision-Making — advanced training in population data science, policy research, and knowledge mobilization.</p>
+  <div class="hero-pills">
+    <span class="pill">2025–2026 Fellow</span>
+    <span class="pill">Population Data Science</span>
+    <span class="pill">Health Equity</span>
+    <span class="pill">Policy Research</span>
+    <span class="pill">Knowledge Mobilization</span>
+  </div>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Month intensive fellowship</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">CAnD3</div>
+    <div class="stat-label">2025–2026 cohort</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Disciplines integrated</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">SSHRC</div>
+    <div class="stat-label">Funded partnership</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About the Fellowship</div>
+  <h2 class="section-title">Data Science in <em>Service of Equity</em></h2>
+  <div class="about-grid">
+    <div>
+      <p>As a 2025–2026 CAnD3 Fellow, I receive advanced training in population data science, quantitative methods, and policy-relevant research — bridging my background in nursing and sociology with data analytics to produce rigorous, evidence-based insights on health equity and population outcomes.</p>
+      <p>The fellowship builds on my doctoral work examining the health outcomes of children and youth exposed to adversity in Canada, equipping me to translate population research into policy-actionable insights.</p>
+    </div>
+    <div class="info-panels">
+      <div class="info-panel">
+        <div class="label">Training Focus</div>
+        <div class="value">Interdisciplinary data science, policy analysis, and knowledge mobilization applied to aging societies and population health. Methods include multivariate regression, longitudinal analysis, national survey data, and data visualization.</div>
+      </div>
+      <div class="info-panel">
+        <div class="label">Institution</div>
+        <div class="value">University of New Brunswick — Co-investigator: Dr. Neeru Gupta, Professor of Sociology</div>
+      </div>
+      <div class="info-panel">
+        <div class="label">Funding</div>
+        <div class="value">SSHRC-funded partnership grant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHARK TANK -->
+<section id="dataviz" style="background:var(--cream);">
+  <div class="section-label">CAnD3 DataViz Shark Tank</div>
+  <h2 class="section-title">Public Perceptions of Racial Inequality & <em>Educational Opportunity</em></h2>
+  <p style="font-size:0.78rem; color:var(--muted); margin-bottom:32px; letter-spacing:0.04em;">In collaboration with Jiawen Li · GSS · WTSSPS-weighted · % "Yes" by Census division</p>
+
+  <div style="display:flex; flex-direction:column; gap:2px;">
+
+    <!-- ROW 1: 2014 map + context -->
+    <div style="display:grid; grid-template-columns:0.8fr 1.2fr; gap:0; background:var(--sand);">
+      <div style="background:var(--ivory); overflow:hidden;">
+        <img src="https://github.com/inlueof/inlueof.github.io/blob/main/heatmap%202014.png?raw=true" alt="2014 map" style="width:100%; height:auto; display:block;" />
+      </div>
+      <div style="background:var(--ivory); padding:40px 44px; display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--sand);">
+        <div style="font-size:0.68rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--salmon); margin-bottom:12px;">2014 — Baseline</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--charcoal); margin-bottom:14px;">Study Context</h3>
+        <p style="font-size:0.9rem; color:var(--muted); line-height:1.9;">This data visualization project was completed in collaboration with Jiawen Li as part of the CAnD3 DataViz Shark Tank Challenge. Using data from the American General Social Survey (GSS), we examined whether Americans attribute racial economic inequality to limited educational opportunities — a key mechanism through which socioeconomic advantage and disadvantage are transmitted across generations. In 2014, agreement was concentrated in the Northeast, with lower levels across the South and West.</p>
+      </div>
+    </div>
+
+    <!-- ROW 2: 2022 map + findings -->
+    <div style="display:grid; grid-template-columns:0.8fr 1.2fr; gap:0; background:var(--sand);">
+      <div style="background:var(--ivory); overflow:hidden;">
+        <img src="https://github.com/inlueof/inlueof.github.io/blob/main/heatmap%202022.png?raw=true" alt="2022 map" style="width:100%; height:auto; display:block;" />
+      </div>
+      <div style="background:var(--ivory); padding:40px 44px; display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--sand);">
+        <div style="font-size:0.68rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--salmon); margin-bottom:12px;">2022 — Key Findings</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--charcoal); margin-bottom:14px;">What Changed</h3>
+        <p style="font-size:0.9rem; color:var(--muted); line-height:1.9;">By 2022, agreement had shifted markedly westward. Black respondents showed the largest increase in agreement (+10.4 percentage points between 2016 and 2022), while White respondents remained stable at around 50% and respondents categorized as Other saw a notable decline (−13.6 percentage points). These diverging trends suggest that perceptions of education as a driver of racial inequality are shaped by region, lived experience, and the broader historical and political moment.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REPRODUCIBILITY -->
+<section id="reproducibility">
+  <div class="section-label">Reproducibility</div>
+  <h2 class="section-title">Open & <em>Reproducible Research</em></h2>
+  <div class="repos-grid">
+    <div class="repo-card">
+      <div class="repo-type">Reproducibility Report</div>
+      <h3>Reproducing a Colleague's Research</h3>
+      <p>An independent reproducibility report assessing whether findings from a colleague's published study can be replicated using the original data and methods — contributing to a culture of openness and transparency in population health research.</p>
+      <a href="https://github.com/inlueof/reproducibilityreport" target="_blank" class="repo-link">View on GitHub →</a>
+    </div>
+    <div class="repo-card">
+      <div class="repo-type">Original Work for Reproduction</div>
+      <h3>Research Made Available for Replication</h3>
+      <p>Original research made openly available for replication by others — demonstrating a commitment to transparent, reproducible population health research practices.</p>
+      <a href="https://github.com/inlueof/RRWM" target="_blank" class="repo-link">View on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POLICY BRIEF -->
+<section id="policy" style="background:var(--cream);">
+  <div class="section-label">Policy Work</div>
+  <h2 class="section-title">Policy Brief: <em>Caregiver Sleep & Health Systems</em></h2>
+  <div class="policy-layout">
+    <div>
+      <p>This policy brief examines how chronic sleep deprivation among informal caregivers contributes to burnout, long-term health risks, and health system strain — and what targeted policy interventions can help.</p>
+      <p>Prepared as part of CAnD3 training in knowledge mobilization and policy translation, the brief draws on national survey data and international comparators to make evidence-based recommendations for Canadian governments.</p>
+      <div style="margin-top:24px;">
+        <a href="#" class="btn-primary">Download PDF</a>
+      </div>
+    </div>
+    <div class="policy-meta">
+      <div class="policy-meta-item">
+        <div class="label">Authors</div>
+        <div class="value">Rosario Aronica, Fabio Robibaro, Ruth Lue, Leah Houseman</div>
+      </div>
+      <div class="policy-meta-item">
+        <div class="label">Policy Question</div>
+        <div class="value">How does chronic sleep deprivation among carers of medically complex and ageing individuals contribute to caregiver burnout and long-term health risks?</div>
+      </div>
+      <div class="policy-meta-item">
+        <div class="label">Recommendation</div>
+        <div class="value">Coordinated strategy combining targeted respite expansion with system-level supports for high-risk caregivers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-brand">Ruth Lue, RN MN</div>
+    <p style="margin-top:4px;">Faculty of Nursing and Health Sciences, University of New Brunswick</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#research">Research</a>
+    <a href="index.html#publications">Scholarship</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <p>© 2026 Ruth Lue, RN MN</p>
+</footer>
+
+</body>
+</html>
