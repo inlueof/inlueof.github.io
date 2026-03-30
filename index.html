@@ -162,43 +162,44 @@
   }
   .section-title em { font-style: italic; color: var(--salmon-dark); }
 
-  /* ── RESEARCH FOCUS ── */
-  .focus-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--sand); }
-  .focus-card {
-    background: var(--ivory); padding: 40px 36px;
-    transition: background 0.2s;
-  }
-  .focus-card:hover { background: var(--white); }
-  .focus-icon {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: var(--salmon); display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-  }
-  .focus-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem; font-weight: 600; color: var(--charcoal);
-    margin-bottom: 12px;
-  }
-  .focus-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
-
-  /* ── CREDENTIALS / TIMELINE ── */
-  .credentials-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-  .credential-section h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 600; color: var(--salmon-dark);
-    margin-bottom: 28px; padding-bottom: 12px;
-    border-bottom: 1px solid var(--sand);
-  }
-  .timeline { display: flex; flex-direction: column; gap: 24px; }
-  .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 20px; }
-  .timeline-year {
-    font-size: 0.75rem; font-weight: 500; color: var(--accent);
-    letter-spacing: 0.06em; padding-top: 4px;
-  }
-  .timeline-content h4 { font-size: 0.95rem; font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
-  .timeline-content p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
-
+<!-- RESEARCH FOCUS -->
+<section id="research">
+  <div class="section-label">Research Focus</div>
+  <h2 class="section-title">Areas of <em>Scholarly</em> Interest</h2>
+  <div class="focus-grid fade-up">
+    <div class="focus-card">
+      <div class="focus-icon">⚖️</div>
+      <h3>Health Equity</h3>
+      <p>Examining how race, class, and structural inequality shape health outcomes for children and youth in Canada, with a focus on identifying and addressing the systemic conditions that produce disparities across racialized communities.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🌍</div>
+      <h3>Social Determinants of Health</h3>
+      <p>Investigating how policy, economics, migration patterns, and social environment manifest as stress, symptoms, and access barriers — particularly for children and adolescents navigating adversity in Canada.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">📊</div>
+      <h3>Population Data Science</h3>
+      <p>Applying multivariate and longitudinal methods using national datasets — including the National Longitudinal Survey of Children and Youth and the Canadian Community Health Survey — to produce policy-relevant evidence on child and youth health.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">✊🏾</div>
+      <h3>Black Health & Life Trajectories</h3>
+      <p>Exploring how racism functions as a unique and compounding stressor in the lives of racialized children, tracing the long-term physiological, psychological, and epigenetic effects of toxic stress across the life course.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🏥</div>
+      <h3>Nursing Education</h3>
+      <p>Developing equity-oriented, globally informed curricula that prepare nursing graduates to ask better questions — about what's happening for a child at school, at home, and in their community — and to deliver culturally safe care.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">🌐</div>
+      <h3>Global Health</h3>
+      <p>Leading global health curriculum integration at UNB's Faculty of Nursing, embedding contemporary research on planetary health, migration, and social determinants into nursing education to reflect the realities of a changing population.</p>
+    </div>
+  </div>
+</section>
+  
   /* ── SKILLS ── */
   .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: var(--sand); }
   .skill-item {
